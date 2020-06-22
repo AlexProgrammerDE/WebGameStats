@@ -1,0 +1,8 @@
+name: LeeesPlayTime
+version: 1.0.0
+main: Leees.Play.Time.Main
+api-version: 1.13
+authors: [Nate, Legault, AlexProgrammerDE]
+description: Plugin to host Playtime website.
+website: http://6b6t.org
+depend: [Playtimes]

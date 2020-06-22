@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -67,7 +68,7 @@ public class HttpHandler {
                                 "<table style=\"color:white; margin-top:10px;\">" +
                                 "  <tr>" +
                                 "    <td>First time joined: </td>" +
-                                "    <td>" + Instant.ofEpochMilli(player.getFirstPlayed()) + "</td>" +
+                                "    <td>" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getHour() + ":" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMinute() + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getDayOfYear() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMonth().name() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getYear() + "</td>" +
                                 "  </tr>" +
                                 "  <tr>" +
                                 "    <td>Time played: </td>" +
