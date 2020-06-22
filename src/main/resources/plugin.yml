@@ -1,6 +1,6 @@
 name: LeeesPlayTime
 version: 1.0.0
-main: Main
+main: Leees.Play.Time.Main
 api-version: 1.13
 authors: [Nate, Legault, AlexProgrammerDE]
 description: Plugin to host Playtime website.
