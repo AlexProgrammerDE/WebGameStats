@@ -69,7 +69,7 @@ implements Listener {
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +
                     "              <div id=\"html_element\"></div>\n" +
-                    "              <input type=\"submit\" value=\"Submit\" style:\"margin-top:10px;\">\n" +
+                    "              <input type=\"submit\" value=\"Submit\" style=\"margin-top:10px;\">\n" +
                     "            </form>\n" +
                     "            playtime_result\n" +
                     "          </div>\n" +

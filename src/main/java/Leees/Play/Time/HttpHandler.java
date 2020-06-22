@@ -64,11 +64,26 @@ public class HttpHandler {
                     OfflinePlayer player = Bukkit.getOfflinePlayer((String)name);
                     String div = "<div style=\"color:white;\"> placeholder </div>";
                     if (player.hasPlayedBefore()) {
+                        String hour;
+                        String min;
+
+                        if (Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getHour() < 10) {
+                          hour = "0" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getHour();
+                        } else {
+                          hour = "" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getHour();
+                        }
+
+                        if (Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMinute() < 10) {
+                          min = "0" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMinute();
+                        } else {
+                          min = "" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMinute();
+                        }
+
                         String table =
                                 "<table style=\"color:white; margin-top:10px;\">" +
                                 "  <tr>" +
                                 "    <td>First time joined: </td>" +
-                                "    <td>" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getHour() + ":" + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMinute()+ " " + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getDayOfMonth() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMonth().name() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getYear() + "</td>" +
+                                "    <td>" + hour + ":" + min + " " + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getDayOfMonth() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMonth().name() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getYear() + "</td>" +
                                 "  </tr>" +
                                 "  <tr>" +
                                 "    <td>Time played: </td>" +
