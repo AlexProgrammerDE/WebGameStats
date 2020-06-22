@@ -81,12 +81,10 @@ public class HttpHandler {
                         String table =
                                 "<table style=\"color:white; margin-top:10px;\">" +
                                 "  <tr>" +
-                                "    <td>First time joined: </td>" +
-                                "    <td>" + hour + ":" + min + " " + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getDayOfMonth() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMonth().name() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getYear() + "</td>" +
+                                "    <td>First time joined: " + hour + ":" + min + " " + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getDayOfMonth() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getMonth().name() + "." + Instant.ofEpochMilli(player.getFirstPlayed()).atZone(ZoneOffset.UTC).getYear() + "</td>" +
                                 "  </tr>" +
                                 "  <tr>" +
-                                "    <td>Time played: </td>" +
-                                "    <td>" + PlayTimeAPI.getOfflineTime((UUID)player.getUniqueId()) + "</td>" +
+                                "    <td>Time played: " + PlayTimeAPI.getOfflineTime((UUID)player.getUniqueId()) + " </td>" +
                                 "  </tr>" +
                                  "</table>";
                         div = div.replace("placeholder", table);
