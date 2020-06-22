@@ -1,22 +1,18 @@
 package Leees.Play.Time;
 
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
-
 public final class Main
 extends JavaPlugin
 implements Listener {
-    public static ArrayList<String> verified = new ArrayList();
-    public static ArrayList<String> blacklisted = new ArrayList();
-    public static File completedFile;
-    public static File blaclistFile;
     public static File indexhtml;
 
     public static Main getPlugin() {
@@ -73,7 +69,7 @@ implements Listener {
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +
                     "              <div id=\"html_element\"></div>\n" +
-                    "              <input type=\"submit\" value=\"Submit\">\n" +
+                    "              <input type=\"submit\" value=\"Submit\" style:\"margin-top:10px;\">\n" +
                     "            </form>\n" +
                     "            playtime_result\n" +
                     "          </div>\n" +

@@ -2,6 +2,10 @@ package Leees.Play.Time;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import me.Cmaaxx.PlayTime.PlayTimeAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,10 +15,6 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import me.Cmaaxx.PlayTime.PlayTimeAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 
 public class HttpHandler {
     public static void main(String[] args) throws IOException {
@@ -61,8 +61,26 @@ public class HttpHandler {
                 if (!name.isEmpty()) {
                     Main.getPlugin().getLogger().info(map.toString());
                     OfflinePlayer player = Bukkit.getOfflinePlayer((String)name);
-                    String table = "<table>  <tr>    <td>First time joined: </td>    <td>" + Instant.ofEpochMilli(player.getFirstPlayed()) + "</td>  </tr>  <tr>    <td>Time played: </td>    <td>" + PlayTimeAPI.getOfflineTime((UUID)player.getUniqueId()) + "</td>  </tr></table>";
-                    response = page.replace("playtime_result", table);
+                    String div = "<div style=\"color:white;\"> placeholder </div>";
+                    if (player.hasPlayedBefore()) {
+                        String table =
+                                "<table style=\"color:white; margin-top:10px;\">" +
+                                "  <tr>" +
+                                "    <td>First time joined: </td>" +
+                                "    <td>" + Instant.ofEpochMilli(player.getFirstPlayed()) + "</td>" +
+                                "  </tr>" +
+                                "  <tr>" +
+                                "    <td>Time played: </td>" +
+                                "    <td>" + PlayTimeAPI.getOfflineTime((UUID)player.getUniqueId()) + "</td>" +
+                                "  </tr>" +
+                                 "</table>";
+                        div = div.replace("placeholder", table);
+                    } else {
+                        String warning = "<p style=\"color:red; margin-top:10px;\">This player never joined this server.";
+                        div = div.replace("placeholder", warning);
+                    }
+
+                    response = page.replace("playtime_result", div);
                 } else {
                     response = page.replace("playtime_result", "");
                 }
