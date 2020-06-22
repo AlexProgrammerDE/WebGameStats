@@ -64,7 +64,7 @@ implements Listener {
                     "          <div align=\"center\">\n" +
                     "            <form action=\"/\">\n" +
                     "              <label for=\"username\"><b><h1>LeeesPlayTime</h1></b></label>\n" +
-                    "              <label for=\"username\"><b><h2>Ver 2.0.8</h2></b></label>\n" +
+                    "              <label for=\"username\"><b><h2>Ver 1.0.0</h2></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Please enter your username with proper caps and lower case</h3></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +
