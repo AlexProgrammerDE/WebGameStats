@@ -60,7 +60,6 @@ public class HttpHandler {
                 Map<String, String> map = HttpHandler.xd(uri);
                 String name = map.get("username");
                 if (!name.isEmpty()) {
-                    Main.getPlugin().getLogger().info(map.toString());
                     OfflinePlayer player = Bukkit.getOfflinePlayer((String)name);
                     String div = "<div style=\"color:white;\"> placeholder </div>";
                     if (player.hasPlayedBefore()) {
