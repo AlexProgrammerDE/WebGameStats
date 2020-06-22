@@ -20,8 +20,6 @@ implements Listener {
     }
 
     public void onEnable() {
-        String prefix = "[LeeesPlayTime] ";
-        getLogger().info(prefix + "Enabling the plugin.");
         this.saveDefaultConfig();
         File dir = new File("plugins/LeeesPlayTime");
         if (!dir.exists()) {
@@ -101,7 +99,7 @@ implements Listener {
                 this.getServer().getPluginManager().disablePlugin((Plugin)this);
             }
         }).start();
-        getLogger().info(prefix + "Enabled the plugin. :)");
+        getLogger().info("Enabled LeeesPlayTime. :)");
     }
 
     public void onDisable() {
