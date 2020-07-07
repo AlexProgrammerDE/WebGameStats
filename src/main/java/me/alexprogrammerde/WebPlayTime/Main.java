@@ -68,10 +68,9 @@ implements Listener {
                     "      <div class=\"content\">\n" +
                     "        <article class=\"article animated slideInUp\" style=\"text-align: center; display: block; margin-left: auto; margin-right: auto; width: 50%;\">\n" +
                     "          <div align=\"center\">\n" +
-                    "            top_stats" +
                     "            <form action=\"/\">\n" +
                     "              <label for=\"username\"><b><h1>WebPlayTime</h1></b></label>\n" +
-                    "              <label for=\"username\"><b><h2>Ver 1.0.0</h2></b></label>\n" +
+                    "              <label for=\"username\"><b><h2>Ver 1.0.1</h2></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Please enter your username with proper caps and lower case</h3></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +

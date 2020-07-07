@@ -1,15 +1,10 @@
 package me.alexprogrammerde.WebPlayTime;
 
-import com.google.common.collect.Lists;
-import com.google.common.math.Stats;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import me.Cmaaxx.PlayTime.PlayTimeAPI;
 import me.codedred.playtimes.api.TimelessPlayer;
-import me.codedred.playtimes.api.TimelessServer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +13,9 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.time.Instant;
 import java.time.ZoneOffset;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class HttpHandler {
     public static void main(String[] args) throws IOException {
@@ -30,7 +27,7 @@ public class HttpHandler {
     }
 
     public static Map<String, String> xd(String a) {
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         for (String s : a.split("&")) {
             map.put(s.split("=")[0], s.split("=")[1]);
         }
@@ -61,13 +58,13 @@ public class HttpHandler {
 
             String page = contentBuilder.toString();
             String uri = t.getRequestURI().getRawQuery();
-            String response = "";
+            String response;
 
             if (uri != null) {
                 Map<String, String> map = HttpHandler.xd(uri);
                 String name = map.get("username");
                 if (!name.isEmpty()) {
-                    OfflinePlayer player = Bukkit.getOfflinePlayer((String)name);
+                    OfflinePlayer player = Bukkit.getOfflinePlayer(name);
                     String div = "<div style=\"color:white;\"> placeholder </div>";
                     TimelessPlayer timelessplayer = new TimelessPlayer(player.getUniqueId());
                     if (player.hasPlayedBefore()) {
@@ -94,22 +91,22 @@ public class HttpHandler {
                                 "  <tr>" +
                                 "    <td style=\"text-align:center;\">Time played: " + timelessplayer.getPlayTime() + " </td>" +
                                 "  </tr>" +
-                                "  <tr>" +
-                                "    <td style=\"text-align:center;\">Player kills: " + Main.getPlugin().data.getString(player.getName() + ".kills") + " </td>" +
-                                "  </tr>" +
                                 "advancedtable" +
                                  "</table>";
-                        if (Main.getPlugin().data.contains(player.getName())) {
+                        if (Main.getPlugin().data.contains(Objects.requireNonNull(player.getName()))) {
                             String advancedtable =
+                                    "  <tr>" +
+                                    "    <td style=\"text-align:center;\">Player kills: " + Main.getPlugin().data.getString(player.getName() + ".kills") + " </td>" +
+                                    "  </tr>" +
                                     "  <tr>" +
                                     "    <td style=\"text-align:center;\">Deaths: " + Main.getPlugin().data.getString(player.getName() + ".deaths") + " </td>" +
                                     "  </tr>" +
                                     "  <tr>" +
                                     "    <td style=\"text-align:center;\">Times joined: " + Main.getPlugin().data.getString(player.getName() + ".join") + " </td>" +
                                     "  </tr>";
-                            table.replace("advancedtable", advancedtable);
+                            table = table.replace("advancedtable", advancedtable);
                         } else {
-                            table.replace("advancedtable", "");
+                            table = table.replace("advancedtable", "");
                         }
 
                         div = div.replace("placeholder", table);
@@ -190,9 +187,9 @@ public class HttpHandler {
             Main.getPlugin().getLogger().info(server.getNumberThree().getName());
             Main.getPlugin().getLogger().info(playerkills.get(keys[0]));
             Main.getPlugin().getLogger().info(playerkills.get(keys[1]));
-            Main.getPlugin().getLogger().info(playerkills.get(keys[2]));
+            Main.getPlugin().getLogger().info(playerkills.get(keys[2]));*/
 
-            response = response.replace("top_stats", top);*/
+            response = response.replace("top_stats", "");
 
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();

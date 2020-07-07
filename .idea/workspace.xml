@@ -19,21 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a25a81ff-fc59-4f2f-925f-23a437b5eb88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/PlayTimes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebPlayTime.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/ConfigManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/DataListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="a25a81ff-fc59-4f2f-925f-23a437b5eb88" name="Default Changelist" comment="Add some good enhancements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayTimes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/PlayTimes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebPlayTime.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebPlayTime.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/HttpHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/alexprogrammerde/WebPlayTime/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +72,14 @@
       <option name="presentableId" value="Default" />
       <updated>1594107075792</updated>
     </task>
+    <task id="LOCAL-00001" summary="Add some good enhancements">
+      <created>1594123653425</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594123653425</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,23 +93,31 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add some good enhancements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some good enhancements" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="96" key="GridCell.Tab.0.bottom" timestamp="1594119369784">
+    <state width="1877" height="96" key="GridCell.Tab.0.bottom" timestamp="1594124547514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="96" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594119369784" />
-    <state width="1877" height="96" key="GridCell.Tab.0.center" timestamp="1594119369783">
+    <state width="1877" height="96" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594124547514" />
+    <state width="1877" height="96" key="GridCell.Tab.0.center" timestamp="1594124547514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="96" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594119369783" />
-    <state width="1877" height="96" key="GridCell.Tab.0.left" timestamp="1594119369783">
+    <state width="1877" height="96" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594124547514" />
+    <state width="1877" height="96" key="GridCell.Tab.0.left" timestamp="1594124547514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="96" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594119369783" />
-    <state width="1877" height="96" key="GridCell.Tab.0.right" timestamp="1594119369784">
+    <state width="1877" height="96" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594124547514" />
+    <state width="1877" height="96" key="GridCell.Tab.0.right" timestamp="1594124547514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="96" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594119369784" />
+    <state width="1877" height="96" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594124547514" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1594123821606">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594123821606" />
     <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1594109579553">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

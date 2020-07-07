@@ -1,8 +1,8 @@
 name: WebPlayTime
-version: 1.0.0
+version: 1.0.1
 main: me.alexprogrammerde.WebPlayTime.Main
 api-version: 1.13
 authors: [Nate, Legault, AlexProgrammerDE]
 description: Plugin to host Playtime website.
-website: http://6b6t.org
+website: https://joindate.6b6t.org
 depend: [Playtimes]
