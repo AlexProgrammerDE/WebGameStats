@@ -1,6 +1,6 @@
-name: LeeesPlayTime
+name: WebPlayTime
 version: 1.0.0
-main: Leees.Play.Time.Main
+main: me.alexprogrammerde.WebPlayTime.Main
 api-version: 1.13
 authors: [Nate, Legault, AlexProgrammerDE]
 description: Plugin to host Playtime website.

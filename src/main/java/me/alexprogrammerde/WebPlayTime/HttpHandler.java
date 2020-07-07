@@ -1,4 +1,4 @@
-package Leees.Play.Time;
+package me.alexprogrammerde.WebPlayTime;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -44,7 +44,7 @@ public class HttpHandler {
             StringBuilder contentBuilder = new StringBuilder();
             try {
                 String str;
-                BufferedReader in = new BufferedReader(new FileReader("plugins/LeeesPlayTime/index.html"));
+                BufferedReader in = new BufferedReader(new FileReader("plugins/WebPlayTime/index.html"));
                 while ((str = in.readLine()) != null) {
                     contentBuilder.append(str);
                 }

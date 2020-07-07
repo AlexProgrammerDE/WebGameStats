@@ -1,4 +1,4 @@
-package Leees.Play.Time;
+package me.alexprogrammerde.WebPlayTime;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -8,7 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public final class Main
 extends JavaPlugin
@@ -21,7 +20,7 @@ implements Listener {
 
     public void onEnable() {
         this.saveDefaultConfig();
-        File dir = new File("plugins/LeeesPlayTime");
+        File dir = new File("plugins/WebPlayTime");
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -39,7 +38,7 @@ implements Listener {
                     String fileContent =
                     "<html>\n" +
                     "  <head>\n" +
-                    "    <title>LeeesPlayTime</title>\n" +
+                    "    <title>WebPlayTime</title>\n" +
                     "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.6b6t.org/css/global.css\">\n" +
                     "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.6b6t.org/css/animate.css\">\n" +
                     "    <script src=\"https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js\"></script>\n" +
@@ -99,7 +98,7 @@ implements Listener {
                 this.getServer().getPluginManager().disablePlugin((Plugin)this);
             }
         }).start();
-        getLogger().info("Enabled LeeesPlayTime. :)");
+        getLogger().info("Enabled WebPlayTime. :)");
     }
 
     public void onDisable() {
