@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>LeeesPlayTime</name>
+    <name>WebPlayTime</name>
 
     <description>Playtime website hosted from a plugin.</description>
     <properties>

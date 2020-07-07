@@ -1,5 +1,6 @@
 package me.alexprogrammerde.WebPlayTime;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,26 +14,32 @@ public final class Main
 extends JavaPlugin
 implements Listener {
     public static File indexhtml;
+    FileConfiguration data;
 
     public static Main getPlugin() {
-        return (Main)Main.getPlugin(Main.class);
+        return Main.getPlugin(Main.class);
     }
 
     public void onEnable() {
         this.saveDefaultConfig();
-        File dir = new File("plugins/WebPlayTime");
+        File dir = getDataFolder();
+        getServer().getPluginManager().registerEvents(new DataListener(), this);
+
         if (!dir.exists()) {
             dir.mkdirs();
         }
+
         if (!(indexhtml = new File(dir, "index.html")).exists()) {
             try {
                 indexhtml.createNewFile();
             }
+
             catch (IOException e) {
                 e.printStackTrace();
                 this.getServer().getPluginManager().disablePlugin((Plugin)this);
                 return;
             }
+
             if (indexhtml.exists()) {
                 try {
                     String fileContent =
@@ -61,8 +68,9 @@ implements Listener {
                     "      <div class=\"content\">\n" +
                     "        <article class=\"article animated slideInUp\" style=\"text-align: center; display: block; margin-left: auto; margin-right: auto; width: 50%;\">\n" +
                     "          <div align=\"center\">\n" +
+                    "            top_stats" +
                     "            <form action=\"/\">\n" +
-                    "              <label for=\"username\"><b><h1>LeeesPlayTime</h1></b></label>\n" +
+                    "              <label for=\"username\"><b><h1>WebPlayTime</h1></b></label>\n" +
                     "              <label for=\"username\"><b><h2>Ver 1.0.0</h2></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Please enter your username with proper caps and lower case</h3></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
@@ -78,7 +86,7 @@ implements Listener {
                     "  </body>\n" +
                     "</html>";
 
-                    BufferedWriter writer = new BufferedWriter(new FileWriter("plugins/LeeesPlayTime/index.html"));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("plugins/WebPlayTime/index.html"));
                     writer.write(fileContent);
                     writer.close();
                 }
@@ -89,6 +97,9 @@ implements Listener {
                 }
             }
         }
+
+        data = new ConfigManager(this, "data.yml").getConfig();
+
         new Thread(() -> {
             try {
                 HttpHandler.main(null);
@@ -102,6 +113,13 @@ implements Listener {
     }
 
     public void onDisable() {
+        getLogger().info("Disabled WebPlayTime. :)");
     }
+
+    public File getDataFile() {
+        return new File(getDataFolder(), "data.yml");
+    }
+
+    public void reloadData() { this.data = new ConfigManager(this, "data.yml").getConfig(); }
 }
 
