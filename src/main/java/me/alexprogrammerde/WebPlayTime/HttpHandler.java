@@ -3,8 +3,10 @@ package me.alexprogrammerde.WebPlayTime;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import me.codedred.playtimes.api.TimelessPlayer;
+import me.codedred.playtimes.api.TimelessServer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,9 +15,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.time.Instant;
 import java.time.ZoneOffset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class HttpHandler {
     public static void main(String[] args) throws IOException {
@@ -123,73 +123,89 @@ public class HttpHandler {
                 response = page.replace("playtime_result", "");
             }
 
-            /*TimelessServer server = new TimelessServer();
-            HashMap<Integer, String> playerkills = new HashMap<>();
+            TimelessServer server = new TimelessServer();
+            HashMap<String, Integer> playerkills = new HashMap<>();
+            HashMap<String, Integer> playerjoins = new HashMap<>();
+            HashMap<String, Integer> playerdeaths = new HashMap<>();
+            FileConfiguration data = Main.getPlugin(Main.class).data;
 
-            for (String key : Main.getPlugin().data.getKeys(false)) {
-                playerkills.put(Main.getPlugin().data.getInt(key + ".kills"), key);
+            for (String key : data.getKeys(false)) {
+                playerkills.put(key, data.getInt(key + ".kills"));
             }
 
-            Object[] keys = playerkills.keySet().toArray();
+            for (String key : data.getKeys(false)) {
+                playerjoins.put(key, data.getInt(key + ".join"));
+            }
 
-            Arrays.sort(keys);
+            for (String key : data.getKeys(false)) {
+                playerdeaths.put(key, data.getInt(key + ".deaths"));
+            }
 
-            String top =
-                    "<table style=\"color:white; margin-top:10px; margin-right:auto; margin-left:auto;\">" +
-                    "  <tr>" +
-                    "    <th>Top time played</th>" +
-                    "    <th>Top player kills</th>" +
-                    "  </tr>" +
-                    "first" +
-                    "secound" +
-                    "third" +
-                    "</table>";
+            HashMap<String, Integer> kills = sortByValue(playerkills);
+            HashMap<String, Integer> joins = sortByValue(playerjoins);
+            HashMap<String, Integer> deaths = sortByValue(playerdeaths);
 
-            /*if () {
+            List<String> killslist = new ArrayList<>();
+            List<String> joinslist = new ArrayList<>();
+            List<String> deathslist = new ArrayList<>();
+
+            for (String key : kills.keySet()) {
+                killslist.add(key);
+            }
+
+            for (String key : joins.keySet()) {
+                joinslist.add(key);
+            }
+
+            for (String key : deaths.keySet()) {
+                deathslist.add(key);
+            }
+
+            Collections.reverse(killslist);
+            Collections.reverse(joinslist);
+            Collections.reverse(deathslist);
+
+            if (killslist.size() > 2 && joinslist.size() > 2 && deathslist.size() > 2) {
+                String top =
+                        "<table style=\"color:white; margin-top:10px; margin-right:auto; margin-left:auto;\">" +
+                                "  <tr>" +
+                                "    <th>Top kills</th>" +
+                                "    <th>Top joins</th>" +
+                                "    <th>Top deaths</th>" +
+                                "  </tr>" +
+                                "first" +
+                                "second" +
+                                "third" +
+                                "</table>";
+
                 String first =
                         "  <tr>" +
-                        "    <td style=\"text-align:center;\">" + players.get(0).getName() + "</td>" +
-                        "    <td style=\"text-align:center;\">" + playerkills.get(keys[0]) + "</td>" +
-                        "  </tr>";
-                top.replace("first", first);
-            } else {
-                top.replace("first", "");
-            }
+                                "    <td style=\"text-align:center;\">" + killslist.get(0) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + joinslist.get(0) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + deathslist.get(0) + "</td>" +
+                                "  </tr>";
+                top = top.replace("first", first);
 
-
-
-            if () {
-                String secound =
+                String second =
                         "  <tr>" +
-                        "    <td style=\"text-align:center;\">Player kills: " + players.get(1).getName() + " </td>" +
-                        "    <td style=\"text-align:center;\">Player kills: " + playerkills.get(keys[1]) + " </td>" +
-                        "  </tr>";
-                top.replace("first", secound);
-            } else {
-                top.replace("first", "");
-            }
+                                "    <td style=\"text-align:center;\">" + killslist.get(1) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + joinslist.get(1) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + deathslist.get(1) + "</td>" +
+                                "  </tr>";
+                top = top.replace("second", second);
 
-
-
-            if () {
                 String third =
                         "  <tr>" +
-                        "    <td style=\"text-align:center;\">Player kills: " + players.get(2).getName() + " </td>" +
-                        "    <td style=\"text-align:center;\">Player kills: " + playerkills.get(keys[2]) + " </td>" +
-                        "  </tr>";
-                top.replace("first", third);
+                                "    <td style=\"text-align:center;\">" + killslist.get(2) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + joinslist.get(2) + "</td>" +
+                                "    <td style=\"text-align:center;\">" + deathslist.get(2) + "</td>" +
+                                "  </tr>";
+                top = top.replace("third", third);
+
+                response = response.replace("player_stats", top);
             } else {
-                top.replace("first", "");
+                response = response.replace("player_stats", "");
             }
-
-            Main.getPlugin().getLogger().info(server.getNumberOne().getName());
-            Main.getPlugin().getLogger().info(server.getNumberTwo().getName());
-            Main.getPlugin().getLogger().info(server.getNumberThree().getName());
-            Main.getPlugin().getLogger().info(playerkills.get(keys[0]));
-            Main.getPlugin().getLogger().info(playerkills.get(keys[1]));
-            Main.getPlugin().getLogger().info(playerkills.get(keys[2]));*/
-
-            response = response.replace("top_stats", "");
 
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -198,5 +214,28 @@ public class HttpHandler {
         }
     }
 
+    // function to sort hashmap by values
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
 }
 

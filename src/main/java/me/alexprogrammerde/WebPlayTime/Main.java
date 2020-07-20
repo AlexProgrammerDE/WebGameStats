@@ -49,6 +49,13 @@ implements Listener {
                     "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.6b6t.org/css/global.css\">\n" +
                     "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.6b6t.org/css/animate.css\">\n" +
                     "    <script src=\"https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js\"></script>\n" +
+                    "    <style>\n" +
+                    "     table, th, td {\n" +
+                    "      border: 1px solid black;\n" +
+                    "      border-collapse: collapse;\n" +
+                    "      border-color: white;\n" +
+                    "     }\n" +
+                    "</style>" +
                     "  </head>\n" +
                     "  <body>\n" +
                     "    <header class=\"header\">\n" +
@@ -68,9 +75,10 @@ implements Listener {
                     "      <div class=\"content\">\n" +
                     "        <article class=\"article animated slideInUp\" style=\"text-align: center; display: block; margin-left: auto; margin-right: auto; width: 50%;\">\n" +
                     "          <div align=\"center\">\n" +
+                    "            player_stats\n" +
                     "            <form action=\"/\">\n" +
                     "              <label for=\"username\"><b><h1>WebPlayTime</h1></b></label>\n" +
-                    "              <label for=\"username\"><b><h2>Ver 1.0.1</h2></b></label>\n" +
+                    "              <label for=\"username\"><b><h2>Ver 1.1.0</h2></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Please enter your username with proper caps and lower case</h3></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +
