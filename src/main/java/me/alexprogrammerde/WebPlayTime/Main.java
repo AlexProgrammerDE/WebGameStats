@@ -14,11 +14,10 @@ public final class Main
 extends JavaPlugin
 implements Listener {
     public static File indexhtml;
-    FileConfiguration data;
-
-    public static Main getPlugin() {
-        return Main.getPlugin(Main.class);
-    }
+    public FileConfiguration data;
+    public boolean debug;
+    public static Main getPlugin() { return Main.getPlugin(Main.class); }
+    public Thread thread;
 
     public void onEnable() {
         this.saveDefaultConfig();
@@ -55,7 +54,7 @@ implements Listener {
                     "      border-collapse: collapse;\n" +
                     "      border-color: white;\n" +
                     "     }\n" +
-                    "</style>" +
+                    "    </style>\n" +
                     "  </head>\n" +
                     "  <body>\n" +
                     "    <header class=\"header\">\n" +
@@ -75,11 +74,11 @@ implements Listener {
                     "      <div class=\"content\">\n" +
                     "        <article class=\"article animated slideInUp\" style=\"text-align: center; display: block; margin-left: auto; margin-right: auto; width: 50%;\">\n" +
                     "          <div align=\"center\">\n" +
-                    "            player_stats\n" +
                     "            <form action=\"/\">\n" +
                     "              <label for=\"username\"><b><h1>WebPlayTime</h1></b></label>\n" +
-                    "              <label for=\"username\"><b><h2>Ver 1.1.0</h2></b></label>\n" +
-                    "              <label for=\"username\"><b><h3>Please enter your username with proper caps and lower case</h3></b></label>\n" +
+                    "              <label for=\"username\"><b><h2>Ver 1.2.0</h2></b></label>\n" +
+                    "              player_stats\n" +
+                    "              <label for=\"username\"><b><h3>Please enter your username to get your specific stats</h3></b></label>\n" +
                     "              <label for=\"username\"><b><h3>Username</h3></b></label>\n" +
                     "              <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>\n" +
                     "              <div id=\"html_element\"></div>\n" +
@@ -105,21 +104,41 @@ implements Listener {
             }
         }
 
+        // All the loading is finished we can check for debugging now
         data = new ConfigManager(this, "data.yml").getConfig();
+        debug = getConfig().getBoolean("debug");
 
-        new Thread(() -> {
+        if (debug) {
+            getLogger().info("Starting HttpServer Thread");
+        }
+
+        thread = new Thread(() -> {
             try {
                 HttpHandler.main(null);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 this.getServer().getPluginManager().disablePlugin((Plugin)this);
             }
-        }).start();
-        getLogger().info("Enabled WebPlayTime. :)");
+        });
+
+        thread.start();
+
+        if (debug) {
+            getLogger().info("Started HttpServer Thread");
+        }
+
+        if (debug) {
+            getLogger().info("Enabled WebPlayTime. In debugging mode. :)");
+        } else {
+            getLogger().info("Enabled WebPlayTime. :)");
+        }
     }
 
     public void onDisable() {
+        getLogger().info("Stopping thread.");
+
+        thread.stop();
+
         getLogger().info("Disabled WebPlayTime. :)");
     }
 
