@@ -1,2 +1,5 @@
 port: 25598
 debug: false
+execluded-players:
+  - Notch
+  - Dinnerbone

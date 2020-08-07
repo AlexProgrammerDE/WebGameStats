@@ -15,33 +15,39 @@ public class DataListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
-        Main.getPlugin().data.set(player.getName() + ".kills", player.getStatistic(Statistic.PLAYER_KILLS));
-        Main.getPlugin().data.set(player.getName() + ".deaths", player.getStatistic(Statistic.DEATHS));
-        Main.getPlugin().data.set(player.getName() + ".join", player.getStatistic(Statistic.LEAVE_GAME));
+        if (!Main.getPlugin(Main.class).exeludedplayers.contains(player.getName())) {
+            Main.getPlugin().data.set(player.getName() + ".kills", player.getStatistic(Statistic.PLAYER_KILLS));
+            Main.getPlugin().data.set(player.getName() + ".deaths", player.getStatistic(Statistic.DEATHS));
+            Main.getPlugin().data.set(player.getName() + ".join", player.getStatistic(Statistic.LEAVE_GAME));
+            Main.getPlugin().data.set(player.getName() + ".jumps", player.getStatistic(Statistic.JUMP));
 
-        try {
-            Main.getPlugin().data.save(Main.getPlugin().getDataFile());
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                Main.getPlugin().data.save(Main.getPlugin().getDataFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Main.getPlugin().reloadData();
         }
-
-        Main.getPlugin().reloadData();
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        Main.getPlugin().data.set(player.getName() + ".kills", player.getStatistic(Statistic.PLAYER_KILLS));
-        Main.getPlugin().data.set(player.getName() + ".deaths", player.getStatistic(Statistic.DEATHS));
-        Main.getPlugin().data.set(player.getName() + ".join", player.getStatistic(Statistic.LEAVE_GAME));
+        if (!Main.getPlugin(Main.class).exeludedplayers.contains(player.getName())) {
+            Main.getPlugin().data.set(player.getName() + ".kills", player.getStatistic(Statistic.PLAYER_KILLS));
+            Main.getPlugin().data.set(player.getName() + ".deaths", player.getStatistic(Statistic.DEATHS));
+            Main.getPlugin().data.set(player.getName() + ".join", player.getStatistic(Statistic.LEAVE_GAME));
+            Main.getPlugin().data.set(player.getName() + ".jumps", player.getStatistic(Statistic.JUMP));
 
-        try {
-            Main.getPlugin().data.save(Main.getPlugin().getDataFile());
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                Main.getPlugin().data.save(Main.getPlugin().getDataFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Main.getPlugin().reloadData();
         }
-
-        Main.getPlugin().reloadData();
     }
 }

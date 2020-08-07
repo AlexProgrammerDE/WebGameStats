@@ -53,8 +53,7 @@ public class HttpHandler {
     }
 
     static class Handler implements com.sun.net.httpserver.HttpHandler {
-        Handler() {
-        }
+        Handler() {}
 
         @Override
         public void handle(HttpExchange t) throws IOException {
@@ -101,6 +100,7 @@ public class HttpHandler {
                     OfflinePlayer player = Bukkit.getOfflinePlayer(name);
                     String div = "<div style=\"color:white;\"> placeholder </div>";
                     TimelessPlayer timelessplayer = new TimelessPlayer(player.getUniqueId());
+
                     if (player.hasPlayedBefore()) {
                         if (debug) {
                             Main.getPlugin().getLogger().info("HttpServer Thread: That player has played before.");
@@ -172,9 +172,9 @@ public class HttpHandler {
                                     "    <td style=\"text-align:center;\">Times joined: " + Main.getPlugin().data.getString(player.getName() + ".join") + " </td>" +
                                     "  </tr>";
 
-                            table = table.replaceAll("fith", playerfith);
+                            table = table.replaceAll("fifth", playerfith);
                         } else {
-                            table = table.replaceAll("fith", "");
+                            table = table.replaceAll("fifth", "");
                         }
 
                         if (debug) {
@@ -231,7 +231,6 @@ public class HttpHandler {
 
             TimelessServer server = new TimelessServer();
             List<UUID> ids = server.getTop10Players();
-            Main.getPlugin().getLogger().info(ids.toString());
 
             HashMap<String, Integer> kills = sortByValue(playerkills);
             HashMap<String, Integer> joins = sortByValue(playerjoins);
