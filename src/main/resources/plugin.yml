@@ -1,8 +1,7 @@
 name: WebGameStats
-version: 2.0.0
-main: me.alexprogrammerde.WebPlayTime.Main
-api-version: 1.16
-authors: [Nate, Legault, AlexProgrammerDE]
-description: Plugin to host Playtime website.
-website: https://joindate.6b6t.org
+version: 1.0.0
+main: me.alexprogrammerde.WebGameStats.Main
+api-version: "1.16"
+author: AlexProgrammerDE
+description: Display your ingame stats in the web.
 depend: [Playtimes]

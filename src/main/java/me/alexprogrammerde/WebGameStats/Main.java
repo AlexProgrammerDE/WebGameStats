@@ -1,4 +1,4 @@
-package me.alexprogrammerde.WebPlayTime;
+package me.alexprogrammerde.WebGameStats;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public final class Main
 extends JavaPlugin
@@ -25,6 +26,7 @@ implements Listener {
     public void onEnable() {
         this.saveDefaultConfig();
         File dir = getDataFolder();
+        Logger logger = getLogger();
 
         exeludedplayers = getConfig().getStringList("excluded-players");
         getServer().getPluginManager().registerEvents(new DataListener(), this);
@@ -49,9 +51,9 @@ implements Listener {
                     String fileContent =
                     "<html>\n" +
                     "  <head>\n" +
-                    "    <title>WebPlayTime</title>\n" +
-                    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.pistonmaster.net/WebPlayTime/global.css\">\n" +
-                    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.pistonmaster.net/WebPlayTime/animate.css\">\n" +
+                    "    <title>WebGameStats</title>\n" +
+                    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.pistonmaster.net/WebGameStats/global.css\">\n" +
+                    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.pistonmaster.net/WebGameStats/animate.css\">\n" +
                     "    <style>\n" +
                     "     table, th, td {\n" +
                     "      border: 1px solid black;\n" +
@@ -83,7 +85,7 @@ implements Listener {
                     "  </body>\n" +
                     "</html>";
 
-                    BufferedWriter writer = new BufferedWriter(new FileWriter("plugins/WebPlayTime/index.html"));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("plugins/WebGameStats/index.html"));
                     writer.write(fileContent);
                     writer.close();
                 }
@@ -118,10 +120,22 @@ implements Listener {
             getLogger().info("Started HttpServer Thread");
         }
 
+        logger.info("Checking for updates.");
+        new UpdateChecker(this, 12345).getVersion(version -> {
+            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                logger.info("There is not a new update available.");
+            } else {
+                logger.info("There is a new update available.");
+            }
+        });
+
+        logger.info("Loading metrics.");
+        Metrics metrics = new Metrics(this, 8449);
+
         if (debug) {
-            getLogger().info("Enabled WebPlayTime. In debugging mode. :)");
+            getLogger().info("Enabled WebGameStats. In debugging mode. :)");
         } else {
-            getLogger().info("Enabled WebPlayTime. :)");
+            getLogger().info("Enabled WebGameStats. :)");
         }
     }
 
@@ -130,7 +144,7 @@ implements Listener {
 
         thread.stop();
 
-        getLogger().info("Disabled WebPlayTime. :)");
+        getLogger().info("Disabled WebGameStats. :)");
     }
 
     public File getDataFile() {

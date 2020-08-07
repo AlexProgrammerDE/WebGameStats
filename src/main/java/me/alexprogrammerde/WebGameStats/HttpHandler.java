@@ -1,4 +1,4 @@
-package me.alexprogrammerde.WebPlayTime;
+package me.alexprogrammerde.WebGameStats;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -65,7 +65,7 @@ public class HttpHandler {
 
             try {
                 String str;
-                BufferedReader in = new BufferedReader(new FileReader("plugins/WebPlayTime/index.html"));
+                BufferedReader in = new BufferedReader(new FileReader("plugins/WebGameStats/index.html"));
 
                 while ((str = in.readLine()) != null) {
                     contentBuilder.append(str);

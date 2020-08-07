@@ -1,4 +1,4 @@
-package me.alexprogrammerde.WebPlayTime;
+package me.alexprogrammerde.WebGameStats;
 
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;

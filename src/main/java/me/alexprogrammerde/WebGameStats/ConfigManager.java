@@ -1,4 +1,4 @@
-package me.alexprogrammerde.WebPlayTime;
+package me.alexprogrammerde.WebGameStats;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
