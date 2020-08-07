@@ -1,2 +1,2 @@
-# WebPlayTime
-A plugin, which can host a bridge between the web and the PlayTimes plugin. It hosts at the moment the 6b6t stats.
+# WebGameStats
+Display your ingame stats in the web.
